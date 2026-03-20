@@ -1,12 +1,16 @@
 # --- Python / Virtual Environments ---
 # Loại bỏ tất cả các thư mục môi trường ảo
-venv/
-.venv/
-env/
-.env/
-venv_plate/
-venv_311/
-ENV/
+
+**/venv/
+**/env/
+**/.venv/
+**/.env/
+
+**/venv_plate/
+**/.venv_plate/
+
+**/venv_face/
+**/.venv_face/
 
 # --- Byte-compiled / optimized / DLL files ---
 __pycache__/

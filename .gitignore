@@ -1,0 +1,48 @@
+# --- Python / Virtual Environments ---
+# Loại bỏ tất cả các thư mục môi trường ảo
+venv/
+.venv/
+env/
+.env/
+venv_plate/
+venv_311/
+ENV/
+
+# --- Byte-compiled / optimized / DLL files ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# --- AI Models & Weights (Rất quan trọng cho project AI) ---
+# Tránh đẩy file weights nặng hàng trăm MB lên Git
+# Bạn nên lưu weights trên Drive/S3 và tải về sau
+services/*/weights/*.pt
+services/*/weights/*.h5
+services/*/weights/*.weights
+services/*/weights/*.onnx
+**/weights/*
+
+# --- Media & Logs ---
+# Tránh đẩy ảnh test hoặc ảnh lưu tạm của hệ thống
+**/media/*
+!**/media/.gitkeep
+**/test/images/*
+*.log
+
+# --- OS / IDE files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Environment Variables ---
+# Tuyệt đối không đẩy file chứa mật khẩu/API Key
+.env
+.env.local
+.env.*
+
+# --- Large Dataset (nếu có) ---
+**/datasets/
+**/data/*.csv
+**/data/*.json

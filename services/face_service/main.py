@@ -3,7 +3,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 import uvicorn
 import cv2
 import numpy as np
-import  traceback
+import traceback
+import base64
 
 models = {}
 
@@ -37,6 +38,14 @@ def to_cv2(file):
     return cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
 
+def cv2_to_base64(image):
+    if image is None: return None
+    success, buffer = cv2.imencode(".jpg", image)
+    if not success:
+        return None
+    return base64.b64encode(buffer.tobytes()).decode('utf-8')
+
+
 @app.post("/api/v1/extract-face")
 async def extract_face(image_face: UploadFile = File(...)):
     if "face_pipeline" not in models:
@@ -50,7 +59,10 @@ async def extract_face(image_face: UploadFile = File(...)):
 
         return {
             "success": True,
-            "data": results
+            "data": {
+                "embedding": results["embedding"],
+                "processed_face": cv2_to_base64(results["processed_face"])
+            }
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

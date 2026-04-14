@@ -16,7 +16,7 @@ class LicensePlatePipeline:
         :return: 'plate_text': '30A12345'
         """
 
-        # BƯỚC 1: Phát hiện vị trí các biển số trong ảnh
+        # Phát hiện vị trí các biển số trong ảnh
         detections = self.detector.detect(frame)
 
         if not detections:
@@ -25,7 +25,7 @@ class LicensePlatePipeline:
         # Sắp xếp lấy detection tốt nhất (conf cao nhất)
         best_detection = max(detections, key=lambda x: x['conf'])
 
-        # BƯỚC 2: Cắt vùng biển số và tiền xử lý (Làm nét, cân bằng sáng CLAHE)
+        # Cắt vùng biển số và tiền xử lý (Làm nét, cân bằng sáng CLAHE)
         processed_list = self.preprocessor.process(frame, [best_detection])
 
         if not processed_list:
@@ -40,4 +40,4 @@ class LicensePlatePipeline:
         if not plate_text or plate_text.strip() == "":
             return None
 
-        return plate_text
+        return plate_text, target_data["processed_plate"]

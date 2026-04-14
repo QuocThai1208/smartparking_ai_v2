@@ -1,10 +1,10 @@
-import os
+import base64
+
 import cv2
 import numpy as np
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, HTTPException
 import uvicorn
-
 
 # Biến global chứa model
 models = {}
@@ -36,11 +36,20 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="SmartParking AI Service", lifespan=lifespan)
 
+
 # Đọc ảnh
 def to_cv2(file):
     contents = file.file.read()
     nparr = np.frombuffer(contents, np.uint8)
     return cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+
+def cv2_to_base64(image):
+    if image is None: return None
+    success, buffer = cv2.imencode(".jpg", image)
+    if not success:
+        return None
+    return base64.b64encode(buffer.tobytes()).decode('utf-8')
 
 
 @app.post("/api/v1/predict-vehicle")
@@ -56,14 +65,18 @@ async def predict_vehicle(
         img_p = to_cv2(image_plate)
 
         # Chạy dự đoán
-        res_plate = models["plate_pipeline"].run(img_p)
-        res_attr = models["attribute_pipeline"].run(img_f)
+        res_plate, processed_plate = models["plate_pipeline"].run(img_p)
+        res_attr, vehicle_crop = models["attribute_pipeline"].run(img_f)
 
         return {
             "success": True,
             "data": {
                 "plate": res_plate,
-                "attributes": res_attr
+                "attributes": res_attr,
+            },
+            "file": {
+                "processed_plate": cv2_to_base64(processed_plate),
+                "vehicle_crop": cv2_to_base64(vehicle_crop)
             }
         }
     except Exception as e:

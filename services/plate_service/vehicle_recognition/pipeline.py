@@ -49,5 +49,5 @@ class VehicleAttributePipeline:
         return {
             "type": v_type or None,
             "color": v_color or None,
-            "brand": v_brand or None
-        }
+            "brand": v_brand or None,
+        }, vehicle_crop

@@ -27,5 +27,8 @@ class FaceRecognitionPipeline:
         aligned_face = pre_data["processed_face"]
         embedding = self.recognizer.extract_embedding(aligned_face)
 
-        return { "embedding": embedding}
+        return {
+            "embedding": embedding,
+            "processed_face": pre_data["processed_face"]
+        }
 

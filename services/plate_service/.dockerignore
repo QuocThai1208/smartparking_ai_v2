@@ -1,0 +1,5 @@
+venv
+venv_plate
+__pycache__
+.git
+.env

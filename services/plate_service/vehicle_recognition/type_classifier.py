@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 
 class VehicleTypeClassifier:
-    def __init__(self, model_path="weights\yolo11n_cls_type_v1.pt"):
+    def __init__(self, model_path="weights/yolo11n_cls_type_v1.pt"):
         self.model = YOLO(model_path)
 
     def predict(self, vehicle_crop):

@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+RUN pip install --no-cache-dir --upgrade pip
+
 # Copy requirements và cài đặt
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

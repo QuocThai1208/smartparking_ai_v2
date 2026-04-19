@@ -4,7 +4,7 @@
 from ultralytics import YOLO
 
 class VehicleDetector:
-    def __init__(self, model_path="weights\yolo11n.pt"):
+    def __init__(self, model_path="weights/yolo11n.pt"):
         # Load model YOLOv11 Nano (nhẹ nhất để chạy CPU)
         self.model = YOLO(model_path)
         # Chỉ quan tâm các class: 2 (car), 5 (bus), 7 (truck) theo COCO dataset

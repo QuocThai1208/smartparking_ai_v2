@@ -4,7 +4,7 @@
 from ultralytics import YOLO
 
 class PlateDetector:
-    def __init__(self, model_path = 'weights\yolo11n_plate.pt', conf_threshold=0.5):
+    def __init__(self, model_path = 'weights/yolo11n_plate.pt', conf_threshold=0.5):
         """
         Khởi tạo detector sử dụng YOLOYv11
         :param model_path: numpy array (opencv frame)

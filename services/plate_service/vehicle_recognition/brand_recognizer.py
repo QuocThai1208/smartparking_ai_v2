@@ -7,7 +7,7 @@ from ultralytics import YOLO
 
 
 class VehicleBrandRecognizer:
-    def __init__(self, model_path="weights\yolo11n_brands_v1.pt"):
+    def __init__(self, model_path="weights/yolo11n_brands_v1.pt"):
         self.model = YOLO(model_path)
 
     def predict(self, vehicle_crop):

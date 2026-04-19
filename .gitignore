@@ -21,7 +21,6 @@ __pycache__/
 # --- AI Models & Weights (Rất quan trọng cho project AI) ---
 # Tránh đẩy file weights nặng hàng trăm MB lên Git
 # Bạn nên lưu weights trên Drive/S3 và tải về sau
-services/*/weights/*.pt
 services/*/weights/*.h5
 services/*/weights/*.weights
 services/*/weights/*.onnx

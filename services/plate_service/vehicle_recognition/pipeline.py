@@ -1,6 +1,3 @@
-"""
-    Bộ điều phối (Coordinator) kết hợp các file trên
-"""
 from .brand_recognizer import VehicleBrandRecognizer
 from .color_extractor import VehicleColorExtractor
 from .detector import VehicleDetector

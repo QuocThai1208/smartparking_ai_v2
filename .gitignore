@@ -24,7 +24,6 @@ __pycache__/
 services/*/weights/*.h5
 services/*/weights/*.weights
 services/*/weights/*.onnx
-**/weights/*
 
 # --- Media & Logs ---
 # Tránh đẩy ảnh test hoặc ảnh lưu tạm của hệ thống

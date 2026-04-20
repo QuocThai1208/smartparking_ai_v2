@@ -1,5 +1,12 @@
-venv
-venv_face
-__pycache__
+
 .git
+.gitignore
+__pycache__
+*.pyc
+venv*
+env/
+weights/
+venv_plate/
 .env
+.dockerignore
+Dockerfile
